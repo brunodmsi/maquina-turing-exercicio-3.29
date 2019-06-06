@@ -65,7 +65,9 @@ class Turing():
         tst = "LOOP"
 
     if tst == "LOOP":
-      return "LOOP"
+      while True:
+        print "LOOP"
+
     return "REJEITADA"
 
 def main():
