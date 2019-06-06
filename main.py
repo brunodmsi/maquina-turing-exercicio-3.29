@@ -33,6 +33,9 @@ class Turing():
     else:
       letter = letter + 1
 
+    if word[letter] == "a":
+      return "REJEITADA"
+
     found_a = False
     while(found_a == False):
       if word[letter] == "a":
