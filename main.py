@@ -25,18 +25,44 @@ class Turing():
 
     return "ACEITA"
 
+  def getNextA(self, word, letter):
+    original = letter
+
+    if letter + 1 == len(word):
+      return "LOOP"
+    else:
+      letter = letter + 1
+
+    found_a = False
+    while(found_a == False):
+      if word[letter] == "a":
+        if letter + 1 < len(word) and word[letter + 1] == "a":
+          return "REJEITADA"
+
+        found_a = True
+        return letter               
+
+      letter = letter + 1
+
   def loop(self, word):
     if self.result == "ACEITA":
       return "ACEITA"
 
-    for letter in range(len(word)):
-      if word[letter] == "a" and letter + 1 < len(word):
-        if word[letter + 1] == "b" and letter + 2 < len(word):
-          if word[letter + 2] == "a":
-            return "LOOP"
-          if word[letter + 2] == "b":
-            continue
+    tst = ""
 
+    for letter in range(len(word)):
+      if word[letter] == "a":
+        pos = self.getNextA(word, letter)
+        
+        if pos == "REJEITADA":
+          return "REJEITADA"
+        
+        letter = pos
+
+        tst = "LOOP"
+
+    if tst == "LOOP":
+      return "LOOP"
     return "REJEITADA"
 
 def main():
